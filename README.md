@@ -13,11 +13,11 @@ The project is divided into several parts/aspects:
 - RESTful API
 - Web dynamic
 
-### The console
+### The Console
 
 The console is a command line interpreter that permits management of the objects of the project without the need of a visual interface. It is also a tool to validate the storage engine which will initially be a JSON file.
 
-#### How to use the console
+#### How To Use The Console
 
 The console can be run both interactively and non-interactively. To run the console in non-interactive mode, pipe any command(s) into an execution of the file `console.py` at the command line.
 
