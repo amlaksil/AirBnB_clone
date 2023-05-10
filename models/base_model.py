@@ -7,11 +7,18 @@ from uuid import uuid4
 class BaseModel:
     """Defines the common attributes/methods for other classes"""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initializes a BaseModel instance
         """
-        self.id = str(uuid4())
-        self.created_at = self.updated_at = datetime.now()
+        if kwargs:
+            for key, value in kwargs.items():
+                if key in ["created_at", "updated_at"]:
+                    value = datetime.fromisoformat(value)
+                if key != "__class__":
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = self.updated_at = datetime.now()
 
     def __str__(self):
         """Returns the informal string representation of the instance"""

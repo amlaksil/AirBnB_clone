@@ -13,16 +13,23 @@ class TestBaseModel(unittest.TestCase):
         """
         b1 = BaseModel()
         b2 = BaseModel()
+        b1_dict = b1.to_dict()
+        b3 = BaseModel(**b1_dict)
+
         self.assertIsInstance(b1, BaseModel)
         self.assertIsInstance(b1.id, str)
-
         self.assertIsInstance(b1.created_at, datetime)
         self.assertIsInstance(b1.updated_at, datetime)
+
         self.assertEqual(b1.created_at, b1.updated_at)
         self.assertNotEqual(b1.id, b2.id)
-
         self.assertNotEqual(b1.created_at, b2.created_at)
         self.assertNotEqual(b1.updated_at, b2.updated_at)
+
+        self.assertEqual(b1.id, b3.id)
+        self.assertEqual(b1.created_at, b3.created_at)
+        self.assertEqual(b1.updated_at, b3.updated_at)
+        self.assertIsNot(b1, b3)
 
     def test_str(self):
         """Tests the __str__ method
