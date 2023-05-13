@@ -2,11 +2,16 @@
 """The FileStorage module"""
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
     """Serializes instances to a JSON file and deserializes JSON file to
        instances
+
+    Attributes:
+        __file_path (str): The path to the JSON file
+        __objects (dict): A dictionary of instantiated objects
     """
     __file_path = "file.json"
     __objects = {}

@@ -9,7 +9,7 @@ class HBNBCommand(cmd.Cmd):
     """Defines the HBNBCommand class for AirBnB_clone
     """
     prompt = '(hbnb) '
-    classes = ['BaseModel']
+    classes = ['BaseModel', 'User']
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel and saves it to a JSON file
