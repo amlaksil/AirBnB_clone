@@ -2,14 +2,38 @@
 """The command interpreter for the AirBnB_clone project"""
 import cmd
 import models
+from models.amenity import Amenity
+from models.city import City
+
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+
 from models.base_model import BaseModel
+import sys
 
 
 class HBNBCommand(cmd.Cmd):
     """Defines the HBNBCommand class for AirBnB_clone
     """
-    prompt = '(hbnb) '
-    classes = ['BaseModel', 'User']
+    prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
+    classes = ['BaseModel', 'User', 'State', 'Review',
+               'City', 'Amenity', 'Place']
+
+    def preloop(self):
+        """Displays a different prompt on non-interactive mode
+        """
+        if not sys.__stdin__.isatty():
+            print('(hbnb)')
+
+    def postcmd(self, stop, line):
+        """Modify display prompt on exiting in non-interactive mode
+        """
+        if not sys.__stdin__.isatty():
+            print('(hbnb)')
+            return True
+        return stop
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel and saves it to a JSON file
@@ -67,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
             for value in models.storage.all().values():
                 print(value)
         
-        if arg not in self.classes:
+        elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
             for key, value in models.storage.all().items():
