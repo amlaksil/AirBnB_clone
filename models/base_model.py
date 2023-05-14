@@ -14,6 +14,11 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initializes a BaseModel instance
+
+        Args:
+            args (): no-keyword argument (argument order is important)
+            kwargs (attr): key-worded argument
+            (argument order is not important)
         """
         if kwargs:
             for key, value in kwargs.items():
