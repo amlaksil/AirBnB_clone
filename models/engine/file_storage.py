@@ -5,7 +5,7 @@ serializes instances to a JSON file and deserializes
 JSON file to instances
 """
 from models.base_model import BaseModel
-from modles.amenity import Amenity
+from models.amenity import Amenity
 from models.city import City
 from models.place import Place
 from models.review import Review
@@ -13,6 +13,7 @@ from models.state import State
 from models.user import User
 from os.path import exists
 import json
+
 
 class FileStorage(BaseModel):
     """File storage class """
@@ -42,7 +43,7 @@ class FileStorage(BaseModel):
     def reload(self):
         """Deserializes the JSON file to `__objects` """
         if exists(FileStorage.__file_path) is True:
-            with open(FileStorage.__file_path, mode="r", encoding="utf-8") as f:
+            with open(FileStorage.__file_path, encoding="utf-8") as f:
                 new_dict = json.load(f)
 
             for key, value in new_dict.items():

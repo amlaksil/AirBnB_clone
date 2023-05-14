@@ -19,7 +19,8 @@ class BaseModel:
         """Initialize public instance attributes
         Args:
             args (): no-keyword argument (argument order is important)
-            kwargs (attr): key-worded argument (argument order is not important)
+            kwargs (attr): key-worded argument
+            (argument order is not important)
         """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
@@ -32,15 +33,15 @@ class BaseModel:
                     date_and_time = value.split("T")
                     date = date_and_time[0].split("-")
                     time = date_and_time[1].split(":")
-                    de = time[2].split(".")
+                    sec_micro_sec = time[2].split(".")
+                    msec = int(sec_micro_sec[1])
                     d = [int(i) for i in date]
                     t = [int(float(j)) for j in time]
+                    f = datetime(d[0], d[1], d[2], t[0], t[1], t[2], msec)
                     if key == 'created_at':
-                        self.created_at = datetime(d[0], d[1], d[2],\
-                                                   t[0], t[1], t[2], int(de[1]))
+                        self.created_at = f
                     if key == 'updated_at':
-                        self.updated_at = datetime(d[0], d[1], d[2],\
-                                                   t[0], t[1], t[2], int(de[1]))
+                        self.updated_at = f
 
     def __str__(self):
         """Returns formated string representation of an object """
@@ -58,9 +59,9 @@ class BaseModel:
         """Returns a dictionary containing all keys/values of
         __dict__ of the instance
         """
-        new_dcn = self.__dict__.copy()
-        new_dcn['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        new_dcn['updated_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        new_dcn['__class__'] = self.__class__.__name__
+        dcn = self.__dict__.copy()
+        dcn['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        dcn['updated_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        dcn['__class__'] = self.__class__.__name__
 
-        return new_dcn
+        return dcn
