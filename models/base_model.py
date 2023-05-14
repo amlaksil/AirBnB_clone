@@ -14,6 +14,11 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initializes a BaseModel instance
+
+        Args:
+            args (): no-keyword argument (argument order is important)
+            kwargs (attr): key-worded argument
+            (argument order is not important)
         """
         if kwargs:
             for key, value in kwargs.items():
@@ -24,7 +29,6 @@ class BaseModel:
         else:
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
-            models.storage.new(self)
 
     def __str__(self):
         """Returns the informal string representation of the instance"""
@@ -35,6 +39,7 @@ class BaseModel:
         """Updates the attribute 'updated_at' with the current datetime
         """
         self.updated_at = datetime.now()
+        models.storage.new(self)
         models.storage.save()
 
     def to_dict(self):
