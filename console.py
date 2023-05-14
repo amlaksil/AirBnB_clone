@@ -8,6 +8,7 @@ from models import storage
 import cmd
 import sys
 
+
 class HBNBCommand(cmd.Cmd):
     """Interpreter class """
     prompt = "(hbnb) "
