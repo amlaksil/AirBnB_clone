@@ -3,13 +3,12 @@
 from `BaseModel` class
 """
 from models.base_model import BaseModel
-from models.state import State
-from models.user import User
+
 
 class Place(BaseModel):
     """This class defines all attributes related to place """
-    city_id = "" # City.id
-    user_id = "" # User.id
+    city_id = ""  # City.id
+    user_id = ""  # User.id
     name = ""
     description = ""
     number_rooms = 0
@@ -18,4 +17,4 @@ class Place(BaseModel):
     price_by_night = 0
     latitude = 0.0
     longitude = 0.0
-    amenity_ids = "" # Amenity.id
+    amenity_ids = []  # Amenity.id
