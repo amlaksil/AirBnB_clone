@@ -139,6 +139,18 @@ class HBNBCommand(cmd.Cmd):
                 setattr(models.storage.all()[key], args[2], args[3])
                 models.storage.all()[key].save()
 
+    def default(self, line):
+        """Parse lines which are not recognized as commands
+        """
+        if 'count' in line:
+            count = 0
+            for key in models.storage.all():
+                if line.split()[1] in key:
+                    count += 1
+            print(count)
+        else:
+            return super().default(line)
+
     def do_quit(self, arg):
         """Exits the program with the command 'quit'
         """
