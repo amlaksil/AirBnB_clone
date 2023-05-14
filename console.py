@@ -8,6 +8,7 @@ from models import storage
 import cmd
 import sys
 
+
 class HBNBCommand(cmd.Cmd):
     """Interpreter class """
     prompt = "(hbnb) "
@@ -105,6 +106,14 @@ class HBNBCommand(cmd.Cmd):
         elif len(cmds) == 3:
             print("** value missing **")
         else:
+            a = []
+            if '"' in cmds[3]:
+                a = cmds[3]
+                cmds[3] = a[1:-1]
+            elif cmds[3].isdigit():
+                cmds[3] = int(cmds[3])
+            elif cmds[3].replace('.', "").isdigit():
+                cmds[3] = float(cmds[3])
             setattr(storage.all()[key], cmds[2], cmds[3])
             storage.save()
 
