@@ -5,6 +5,12 @@ manage (create, update, destroy, etc) objects via console
 """
 from models.base_model import BaseModel
 from models import storage
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 import cmd
 import sys
 
@@ -12,7 +18,7 @@ import sys
 class HBNBCommand(cmd.Cmd):
     """Interpreter class """
     prompt = "(hbnb) "
-    classes = ['BaseModel', 'State', 'City', 'Amenity', 'Place', 'Review']
+    clas = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
 
     def do_quit(self, arg):
         """Type\n`quit` to exit the console"""
@@ -32,10 +38,10 @@ class HBNBCommand(cmd.Cmd):
         cmds = arg.split()
         if len(cmds) == 0:
             print("** class name missing **")
-        elif cmds[0] not in self.classes:
+        elif cmds[0] not in self.clas:
             print("** class doesn't exist **")
         else:
-            new_instance = BaseModel()
+            new_instance = eval(cmds[0])()
             new_instance.save()
             print(new_instance.id)
 
@@ -44,13 +50,13 @@ class HBNBCommand(cmd.Cmd):
         cmds = arg.split()
         if len(cmds) == 0:
             print("** class name missing **")
-        elif cmds[0] not in self.classes:
+        elif cmds[0] not in self.clas:
             print("** class doesn't exist **")
         elif len(cmds) == 1:
             print("** instance id missing **")
         else:
             dict_obj = storage.all()
-            key = f"{self.classes[0]}.{cmds[1]}"
+            key = f"{cmds[0]}.{cmds[1]}"
             if key in dict_obj:
                 print(dict_obj[key])
             else:
@@ -61,13 +67,13 @@ class HBNBCommand(cmd.Cmd):
         cmds = arg.split()
         if len(cmds) == 0:
             print("** class name missing **")
-        elif cmds[0] not in self.classes:
+        elif cmds[0] not in self.clas:
             print("** class doesn't exist **")
         elif len(cmds) == 1:
             print("** instance id missing **")
         else:
             dict_obj = storage.all()
-            key = f"{self.classes[0]}.{cmds[1]}"
+            key = f"{cmds[0]}.{cmds[1]}"
             if key in dict_obj:
                 del dict_obj[key]
                 storage.__objects = dict_obj
@@ -79,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instance """
         cmds = arg.split()
         val_list = []
-        if len(cmds) == 0 or cmds[0] in self.classes:
+        if len(cmds) == 0 or cmds[0] in self.clas:
             for value in storage.all().values():
                 val_list.append(str(value))
             print(val_list)
@@ -91,13 +97,13 @@ class HBNBCommand(cmd.Cmd):
         cmds = arg.split()
         if len(cmds) == 0:
             print("** class name missing **")
-        elif cmds[0] not in self.classes:
+        elif cmds[0] not in self.clas:
             print("** class doesn't exist **")
         elif len(cmds) == 1:
             print("** instance id missing **")
         else:
             dict_obj = storage.all()
-            key = f"{self.classes[0]}.{cmds[1]}"
+            key = f"{cmds[0]}.{cmds[1]}"
             if key not in dict_obj:
                 print("** no instance found **")
                 return
