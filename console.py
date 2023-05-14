@@ -18,8 +18,8 @@ class HBNBCommand(cmd.Cmd):
     """Defines the HBNBCommand class for AirBnB_clone
     """
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
-    classes = ['BaseModel', 'User', 'State', 'Review',
-               'City', 'Amenity', 'Place']
+    classes = ('BaseModel', 'User', 'State', 'Review',
+               'City', 'Amenity', 'Place')
 
     def preloop(self):
         """Displays a different prompt on non-interactive mode
