@@ -34,6 +34,16 @@ class HBNBCommand(cmd.Cmd):
             print('(hbnb)')
             return True
         return stop
+    
+    def parseline(self, line):
+        """Adds support for the '.' syntax
+        """
+        if '.' in line:
+            line = line.replace('.', ' ')
+            line = line.replace('(', '').replace(')', '')
+            line = line.split()
+            line = line[1] + ' ' + line[0]
+        return super().parseline(line)
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel and saves it to a JSON file
