@@ -9,4 +9,4 @@ class Review(BaseModel):
     """This module defines place id, user id, and a text """
     place_id = ""
     user_id = ""
-    text = ""
+    text = []

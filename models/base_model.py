@@ -14,18 +14,17 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initializes a BaseModel instance
-
         Args:
-            args (): no-keyword argument (argument order is important)
+            args (attr): no-keyword argument (argument order is important)
             kwargs (attr): key-worded argument
-            (argument order is not important)
+                   (argument order is not important)
         """
         if kwargs:
             for key, value in kwargs.items():
                 if key in ["created_at", "updated_at"]:
                     value = datetime.fromisoformat(value)
-                if key != "__class__":
-                    setattr(self, key, value)
+                    if key != "__class__":
+                        setattr(self, key, value)
         else:
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
