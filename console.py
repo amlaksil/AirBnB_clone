@@ -43,6 +43,7 @@ class HBNBCommand(cmd.Cmd):
             line = line.replace(')', '')
             line = line.split()
             if len(line) == 3:
+                line[2] = line[2].replace('"', '')
                 line = " ".join([line[1], line[0], line[2]])
             else:
                 line = " ".join([line[1], line[0]])
@@ -74,8 +75,6 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
 
         else:
-            if '"' in args[1]:
-                args[1] = args[1].replace('"', '')
             key = args[0] + '.' + args[1]
             if key not in models.storage.all():
                 print('** no instance found **')
