@@ -55,7 +55,7 @@ class TestBaseModel(unittest.TestCase):
         b1_dict = b1.to_dict()
         self.assertIsInstance(b1_dict, dict)
         self.assertIsInstance(b1_dict["id"], str)
-        
+
         self.assertIsInstance(b1_dict["created_at"], str)
         self.assertIsInstance(b1_dict["updated_at"], str)
         self.assertEqual(b1_dict["created_at"], b1.created_at.isoformat())
