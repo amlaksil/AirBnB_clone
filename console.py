@@ -39,10 +39,14 @@ class HBNBCommand(cmd.Cmd):
         """Adds support for the '.' syntax
         """
         if '.' in line:
-            line = line.replace('.', ' ')
-            line = line.replace('(', '').replace(')', '')
+            line = line.replace('.', ' ', 1).replace('(', ' ', 1)
+            line = line.replace(')', '')
             line = line.split()
-            line = line[1] + ' ' + line[0]
+            if len(line) == 3:
+                line = " ".join([line[1], line[0], line[2]])
+            else:
+                line = " ".join([line[1], line[0]])
+
         return super().parseline(line)
 
     def do_create(self, arg):
@@ -68,7 +72,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(args) == 1:
             print('** instance id missing **')
+
         else:
+            if '"' in args[1]:
+                args[1] = args[1].replace('"', '')
             key = args[0] + '.' + args[1]
             if key not in models.storage.all():
                 print('** no instance found **')
@@ -142,12 +149,14 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Parse lines which are not recognized as commands
         """
-        if 'count' in line:
+        args = line.split(' ')
+        if args[0] == 'count':
             count = 0
             for key in models.storage.all():
                 if line.split()[1] in key:
                     count += 1
             print(count)
+
         else:
             return super().default(line)
 
