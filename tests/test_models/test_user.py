@@ -48,7 +48,6 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.password, "")
         self.assertEqual(self.user.first_name, "")
         self.assertEqual(self.user.last_name, "")
-        
 
     def test_str(self):
         """Tests the informal string representation of the User class"""

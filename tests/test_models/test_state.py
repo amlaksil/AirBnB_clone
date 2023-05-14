@@ -27,4 +27,3 @@ class TestState(unittest.TestCase):
                                        self.state.id,
                                        self.state.__dict__)
         self.assertEqual(string, str(self.state))
-        

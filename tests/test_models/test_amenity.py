@@ -30,4 +30,3 @@ class TestAmenity(unittest.TestCase):
         string = "[Amenity] ({}) {}".format(self.amenity.id,
                                             self.amenity.__dict__)
         self.assertEqual(str(self.amenity), string)
-    

@@ -20,7 +20,7 @@ class FileStorage:
         """Returns the '__objects' dictionary
         """
         return self.__objects
-    
+
     def new(self, obj):
         """Stores an object in the '__objects' dictionary
 

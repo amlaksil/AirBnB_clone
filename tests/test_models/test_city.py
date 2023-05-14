@@ -14,7 +14,7 @@ class TestCity(unittest.TestCase):
 
     def test_attributes(self):
         """Tests for the presence and type of attributes
-        
+
         Attributes:
             state_id (str): The state id
             name (str): The name of the city
