@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """This module tests the State class"""
-import unittest
+from models.base_model import BaseModel
 from models.state import State
+import unittest
 
 
 class TestState(unittest.TestCase):
@@ -15,6 +16,10 @@ class TestState(unittest.TestCase):
         """Tests for the presence and type of the name attribute"""
         self.assertTrue(hasattr(self.state, "name"))
         self.assertEqual(type(self.state.name), str)
+
+    def test_inheritance(self):
+        """Tests for inheritance from BaseModel"""
+        self.assertTrue(issubclass(self.state.__class__, BaseModel))
 
     def test_str(self):
         """Tests the __str__ method"""
