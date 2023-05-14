@@ -6,7 +6,7 @@ for other classes
 """
 from datetime import datetime
 import models
-import uuid
+from uuid import uuid4
 
 
 class BaseModel:
