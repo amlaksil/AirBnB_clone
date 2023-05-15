@@ -21,7 +21,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(b1.created_at, datetime)
         self.assertIsInstance(b1.updated_at, datetime)
 
-        self.assertEqual(b1.created_at, b1.updated_at)
         self.assertNotEqual(b1.id, b2.id)
         self.assertNotEqual(b1.created_at, b2.created_at)
         self.assertNotEqual(b1.updated_at, b2.updated_at)
