@@ -21,6 +21,21 @@ class HBNBCommand(cmd.Cmd):
     classes = ['BaseModel', 'User', 'State', 'City',
                'Amenity', 'Place', 'Review']
 
+    def parseline(self, line):
+        """Adds support for the '.' syntax
+        """
+        if '.' in line:
+            line = line.replace('.', ' ', 1).replace('(', ' ', 1)
+            line = line.replace(')', '')
+            line = line.split()
+            if len(line) == 3:
+                line[2] = line[2].replace('"', '')
+                line = " ".join([line[1], line[0], line[2]])
+            else:
+                line = " ".join([line[1], line[0]])
+
+        return super().parseline(line)
+
     def do_quit(self, arg):
         """Type\n`quit` to exit the console"""
         return True
