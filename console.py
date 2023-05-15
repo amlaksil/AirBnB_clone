@@ -142,6 +142,20 @@ class HBNBCommand(cmd.Cmd):
                 setattr(storage.all()[key], cmds[2], cmds[3])
                 storage.save()
 
+    def default(self, line):
+        """Parse lines which are not recognized as commands
+        """
+        args = line.split(' ')
+        if args[0] == 'count':
+            count = 0
+            for key in storage.all():
+                if line.split()[1] in key:
+                    count += 1
+            print(count)
+
+        else:
+            return super().default(line)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
