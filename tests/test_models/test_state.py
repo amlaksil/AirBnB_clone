@@ -64,5 +64,6 @@ class StateTest(unittest.TestCase):
         result = style.check_files(['models/state.py'])
         self.assertEqual(result.total_errors, 0, "Found code style errors.")
 
+
 if __name__ == '__main__':
     unittest.main()

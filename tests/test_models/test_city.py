@@ -47,7 +47,8 @@ class CityTest(unittest.TestCase):
         user1.state_id = "b69b2acf-121e-433c-9634-50ac93a6ce76"
 
         self.assertEqual(user1.name, "Betty")
-        self.assertEqual(user1.state_id, "b69b2acf-121e-433c-9634-50ac93a6ce76")
+        self.assertEqual(user1.state_id,
+                         "b69b2acf-121e-433c-9634-50ac93a6ce76")
 
     def test_has_right_attributes(self):
         """Make sure if the type of the attribute is the right one"""
@@ -68,6 +69,7 @@ class CityTest(unittest.TestCase):
         style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['models/city.py'])
         self.assertEqual(result.total_errors, 0, "Found code style errors.")
+
 
 if __name__ == '__main__':
     unittest.main()

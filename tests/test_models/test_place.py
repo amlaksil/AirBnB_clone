@@ -79,8 +79,8 @@ class PlaceTest(unittest.TestCase):
         self.assertEqual(user1.price_by_night, 180)
         self.assertEqual(user1.latitude, 51.507351)
         self.assertEqual(user1.longitude, -0.127758)
-        self.assertEqual(user1.amenity_ids, ["66d0dd7c-9336-49b5-93f7-0cfcc0f6f1d10"])
-
+        self.assertEqual(user1.amenity_ids,
+                         ["66d0dd7c-9336-49b5-93f7-0cfcc0f6f1d10"])
 
     def test_has_right_attributes(self):
         """Make sure if the type of the attribute is the right one"""
@@ -109,6 +109,7 @@ class PlaceTest(unittest.TestCase):
         style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['models/place.py'])
         self.assertEqual(result.total_errors, 0, "Found code style errors.")
+
 
 if __name__ == '__main__':
     unittest.main()
