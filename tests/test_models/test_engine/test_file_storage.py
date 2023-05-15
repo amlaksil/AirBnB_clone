@@ -14,6 +14,7 @@ class TestFileStorage(unittest.TestCase):
         """Sets up the test environment
         """
         self.fs = FileStorage()
+        self.cwd = os.getcwd()
 
         # Change to a temporary directory
         os.chdir("/tmp")
@@ -25,6 +26,7 @@ class TestFileStorage(unittest.TestCase):
         """
         if os.path.exists(self.fs._FileStorage__file_path):
             os.remove(self.fs._FileStorage__file_path)
+        os.chdir(self.cwd)
 
     def test_all(self):
         """Tests the all method
@@ -39,10 +41,12 @@ class TestFileStorage(unittest.TestCase):
         fs = FileStorage()
         all_objs = fs.all()
         obj1 = BaseModel()
+        fs.new(obj1)
         self.assertIn("BaseModel.{}".format(obj1.id), all_objs)
         self.assertIs(all_objs["BaseModel.{}".format(obj1.id)], obj1)
 
         obj2 = BaseModel()
+        fs.new(obj2)
         self.assertIn("BaseModel.{}".format(obj2.id), all_objs)
         self.assertIs(all_objs["BaseModel.{}".format(obj2.id)], obj2)
 
