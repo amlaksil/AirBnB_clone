@@ -133,7 +133,6 @@ class HBNBCommand(cmd.Cmd):
             for value in storage.all().values():
                 a.append(str(value))
             print(a)
-
         elif arg not in self.classes:
             print("** class doesn't exist **")
         else:

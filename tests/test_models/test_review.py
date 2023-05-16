@@ -48,7 +48,8 @@ class ReviewTest(unittest.TestCase):
         user1.user_id = "b69b2acf-121e-433c-9634-50ac93a6ce77"
         user1.text = "sil"
 
-        self.assertEqual(user1.place_id, "b69b2acf-121e-433c-9634-50ac93a6ce76")
+        self.assertEqual(user1.place_id,
+                         "b69b2acf-121e-433c-9634-50ac93a6ce76")
         self.assertEqual(user1.user_id, "b69b2acf-121e-433c-9634-50ac93a6ce77")
         self.assertEqual(user1.text, "sil")
 
@@ -72,6 +73,7 @@ class ReviewTest(unittest.TestCase):
         style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['models/review.py'])
         self.assertEqual(result.total_errors, 0, "Found code style errors.")
+
 
 if __name__ == '__main__':
     unittest.main()
