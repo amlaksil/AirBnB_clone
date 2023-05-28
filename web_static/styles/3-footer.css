@@ -3,10 +3,10 @@ footer
     background-color: #FFFFFF;
     height: 60px;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 1px solid #CCCCCC
+    border-top: 1px solid #CCCCCC;
 }

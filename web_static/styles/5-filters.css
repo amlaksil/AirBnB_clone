@@ -26,8 +26,7 @@
 button:hover {
     opacity: 0.9;
 }
-.locations
-{
+.locations, .amenities {
     display: flex;
     justity-content: center;
     align-items: center;
@@ -35,10 +34,19 @@ button:hover {
     width: 25%;
     border-right: 1px solid #DDDDDD;
 }
+.amenities {
+    border: none;
+}
 .list
 {
     list-style-type: none;
 }
-h3 {font-weight: 600; margin-bottom: 0;}
-h4 {font-weight: 400; font-size: 14px;}
-p {margin-top: 0;}
+.h3_hover {
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.h4_hover {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 0;
+}
