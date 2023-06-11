@@ -6,12 +6,13 @@ header
     border-bottom: 1px solid #CCCCCC;
 }
 
-div.pic{
-    background-image: url(../images/logo.png);
-    width: 142px;
-    height: 60px;
-    position: absolute;
-    left: 20px;
-    display: flex;
-    align-items: center;
+div.pic {
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	width: 142px;
+	height: 60px;
+	position: absolute;
+	left: 20px;
+	display: flex;
+	align-items: center;
 }
